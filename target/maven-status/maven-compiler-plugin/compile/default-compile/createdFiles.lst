@@ -1,0 +1,6 @@
+com\AlumnosPortatiles\dtos\AlumnoDTO.class
+com\AlumnosPortatiles\entities\Alumno.class
+com\AlumnosPortatiles\app\App.class
+com\AlumnosPortatiles\dtos\PortatilDTO.class
+com\AlumnosPortatiles\entities\Portatil.class
+com\AlumnosPortatiles\tools\Tools.class

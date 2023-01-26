@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- https://thorben-janssen.com/jpa-persistence-xml/ -->
+
+<persistence 
+    xmlns="http://java.sun.com/xml/ns/persistence" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+    version="2.0"
+>
+    <persistence-unit name="GestionGasolinera" transaction-type="RESOURCE_LOCAL">
+        <description>archivo xml de contexto de persistencia de JPA con Hibernate</description>
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        
+<!--    <jar-file>my-entities.jar</jar-file> --> 							<!-- Using multiple class elements to add a long list of managed classes to your persistence unit can be a cumbersome task. It’s oftentimes easier to use one or more jar-file elements to add all managed classes contained in these jar files. -->
+<!-- 	<exclude-unlisted-classes>true</exclude-unlisted-classes> --> 		<!-- You can not only add classes to your persistence-unit which are not at its root, you can also exclude classes which would be added by default. To do that, you first need to use one or more class elements to explicitly specify which managed classes shall be part of the persistence-unit. In the next step, you can use the exclude-unlisted-classes element to exclude all classes from the persistence-unit which were not explicitly included. -->
+<!-- 	<jta-data-source>java:app/jdbc/MyDataSource</jta-data-source> --> 	<!-- The jta-data-source and non-jta-data-source elements are mostly used in Jakarta EE environments. They enable you to reference the JNDI name of a datasource that is or is not compliant with the Java Transaction API. If you don’t use any of these two elements, you need to either configure a default JTA datasource for your container or provide the JNDI name of a datasource at deploy time. And if you’re using JPA in a Java SE environment, you can either use one of these two elements to reference a datasource or use a set of properties to configure your database connection. -->
+<!-- 	<shared-cache-mode>ALL</shared-cache-mode> --> 						<!-- The 2nd level cache, which is defined by the JPA specification. You should use it to cache entities that you often read but only rarely change. It is deactivated by default. You can activate the cache and specify its mode with the shared-cache-mode element. -->
+<!-- 	<validation-mode>CALLBACK</validation-mode> --> 					<!-- JPA integrates with the bean validation specification. This enables you to automatically validate the values of your entity attributes before they get persisted or updated. The 3 different values supported by the validation-mode element enable you to activate or deactivate the validation -->
+<!--    <mapping-file>file:\\\C:\Users\tuUsuario\Desktop\GestionGasolinera\src\main\resources\META-INF</mapping-file> --> <!-- Annotations are the most common but not your only option to define the mapping between your entities and database tables. You can also use external, XML-based mapping files. By default, your persistence provider checks if the META-INF directory contains a file called orm.xml and includes its mapping information. If you want to use multiple mapping files or if the name of your file doesn’t match the default naming pattern, you can use one or more mapping-file elements to reference the files that shall be used with your persistence-unit. -->
+        <class>com.AlumnosPortatiles.entities.Alumno</class>
+        <class>com.AlumnosPortatiles.entities.Portatil</class>
+        
+        <properties>
+            <property name="hibernate.connection.url" value="jdbc:postgresql://localhost/AlumnosPortatiles"/>
+            <property name="hibernate.connection.driver_class" value="org.postgresql.Driver"/>
+            <property name="hibernate.connection.username" value="postgres"/>
+            <property name="hibernate.connection.password" value="12345"/>
+            <property name="hibernate.archive.autodetection" value="class"/>
+            <property name="hibernate.show_sql" value="false"/>
+            <property name="hibernate.format_sql" value="true"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>	<!-- https://vladmihalcea.com/hibernate-hbm2ddl-auto-schema/ -->
+            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
+            
+<!-- In a Java SE environment, you might not have a datasource that you can reference to define the database connection. In these situations, you can use the following set of properties to specify the JDBC driver class, the connection URL and the login information that your persistence provider shall use to connect to the database: -->
+<!-- 		<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" /> -->
+<!--        <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/jpaForBeginners" /> -->
+<!--        <property name="javax.persistence.jdbc.user" value="postgres" /> -->
+<!--        <property name="javax.persistence.jdbc.password" value="postgres" /> -->
+
+<!-- Since version 2.1, JPA can create a new database at startup and initialize it with a predefined dataset. But before you use this feature in your application, please be aware that it is not as powerful and flexible as a version-based database migration -->
+<!-- 		<property name="javax.persistence.schema-generation.database.action" value="drop-and-create" /> -->
+<!--        <property name="javax.persistence.schema-generation.create-script-source" value="create-db.sql" /> -->
+<!--        <property name="javax.persistence.schema-generation.drop-script-source" value="drop-db.sql" /> -->
+<!--        <property name="javax.persistence.sql-load-script-source" value="data.sql" /> -->
+            
+<!-- And if you don’t have any SQL scripts to create or drop your database, you can create them based on your entity mappings. But please be aware that these scripts often need to be adapted and optimized before you can use them in production. But they are a good starting point and optimizing them is often times a lot faster than writing everything yourself. -->
+<!-- 		<property name="javax.persistence.schema-generation.scripts.action" value="drop-and-create"/> -->
+<!--        <property name="javax.persistence.schema-generation.scripts.create-target" value="./create.sql"/> -->
+<!--        <property name="javax.persistence.schema-generation.scripts.drop-target" value="./drop.sql"/> -->
+
+<!-- To define the pessimistic lock timeout and the query timeout in milliseconds. These are just hints and your persistence provider might or might not use them. That depends on the persistence provider you use in your project and the database to which it connects. -->
+<!-- 		<property name="javax.persistence.lock.timeout" value="100"/> -->
+<!-- 		<property name="javax.persistence.query.timeout" value="100"/> -->
+
+<!-- If you activate the automatic validation or rely on the default behavior, you can define custom groups which get validated before the persistence provider executes the persist, update or remove operations. You can configure one or more groups for each lifecycle state change by using the properties: -->
+<!-- 		<property name="javax.persistence.validation.group.pre-persist" value="javax.validation.groups.MyPersistValidation"/> -->
+<!--  		<property name="javax.persistence.validation.group.pre-update" value="javax.validation.groups.MyUpdateValidation"/> -->
+<!-- 		<property name="javax.persistence.validation.group.pre-remove" value="javax.validation.groups.MyRemovetValidation"/> -->
+       
+<!-- The following configuration for EclipseLink adds all managed persistence classes from the root and the my-entities.jar file to the persistence unit. It uses the JTA datasource java:app/jdbc/MyDataSource and logs all executed SQL statements with the bind parameter values. -->
+<!-- 		<property name="eclipselink.logging.level" value="INFO"/> -->
+<!--        <property name="eclipselink.logging.level.sql" value="FINE"/> -->
+<!--        <property name="eclipselink.logging.parameters" value="true"/> -->
+        </properties>
+    </persistence-unit>
+</persistence>

@@ -240,9 +240,9 @@ public class Tools {
 			System.out.print("\n\n" + pregunta + " (s=Sí; n=No):");
 			tecla = scanner.next();
 			
-			if (tecla == "s" || tecla == "S")
+			if (tecla.equals("s") || tecla.equals("S"))
 				return true;
-			if (tecla == "n" || tecla == "N")
+			if (tecla.equals("n") || tecla.equals("N"))
 				return false;
 			
 			// si llega aquí es que no ha pulsado ninguna de las teclas correctas

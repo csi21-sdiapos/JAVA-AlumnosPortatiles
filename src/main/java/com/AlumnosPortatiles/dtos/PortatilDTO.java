@@ -25,11 +25,11 @@ public class PortatilDTO {
 	
 	/******************************************* CONSTRUCTORES *********************************************/
 	// constructor vacío
-	public PortatilDTO(String portatil_marca, String portatil_modelo, Alumno alumno) {
+	public PortatilDTO(String portatil_marca, String portatil_modelo) {
 		super();
 		this.portatil_marca = portatil_marca;
 		this.portatil_modelo = portatil_modelo;
-		this.alumno = alumno;
+		this.alumno = new Alumno();
 	}
 
 	// constructor vacío

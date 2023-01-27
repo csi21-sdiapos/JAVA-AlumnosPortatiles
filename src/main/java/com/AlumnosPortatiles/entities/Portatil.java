@@ -53,13 +53,13 @@ public class Portatil implements Serializable {
 	
 	/******************************************* CONSTRUCTORES *********************************************/
 	// constructor lleno
-	public Portatil(String portatil_marca, String portatil_modelo, Alumno alumno) {
+	public Portatil(String portatil_marca, String portatil_modelo) {
 		super();
 		this.portatil_uuid = Tools.generarUUID();
 		this.portatil_date = Calendar.getInstance();
 		this.portatil_marca = portatil_marca;
 		this.portatil_modelo = portatil_modelo;
-		this.alumno = alumno;
+		this.alumno = new Alumno();
 	}
 
 	// constructor vacío
@@ -150,7 +150,7 @@ public class Portatil implements Serializable {
 	/******************************************* ToString *********************************************/
 	@Override
 	public String toString() {
-		return "Portatil [" + 
+		return "\nPortatil [" + 
 					"portatil_uuid=" + portatil_uuid + 
 					", portatil_id=" + portatil_id + 
 					", portatil_date=" + portatil_date + 

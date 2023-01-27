@@ -164,7 +164,7 @@ public class Alumno implements Serializable {
 	/******************************************* ToString *********************************************/
 	@Override
 	public String toString() {
-		return "Alumno [" + 
+		return "\nAlumno [" + 
 					"alumno_uuid=" + alumno_uuid + 
 					", alumno_id=" + alumno_id + 
 					", alumno_date=" + alumno_date + 

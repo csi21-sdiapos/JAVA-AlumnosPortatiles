@@ -9,13 +9,13 @@ De cada alumno tendremos que guardar su número de alumno, nombre y teléfono. D
 
 Diseña una aplicación con el siguiente menú:
 
-- Matrícula de alumno. 
-- Baja de un alumno.
-- Alta de portátil.
-- Consulta portátil asignado a un alumno (se conoce el número de alumno se busca el portátil).
-- Consulta alumno asignado a un portátil (se conoce el identificador del portátil se busca el alumno).
-- Ver todos los alumnos con su asignación de portátil.
-- Salir.
+1. Matrícula de alumno. 
+2. Baja de un alumno.
+3. Alta de portátil.
+4. Consulta portátil asignado a un alumno (se conoce el número de alumno se busca el portátil).
+5. Consulta alumno asignado a un portátil (se conoce el identificador del portátil se busca el alumno).
+6. Ver todos los alumnos con su asignación de portátil.
+0. Salir.
 
 Requisitos mínimos:
 
@@ -25,4 +25,14 @@ Usar JPA e Hibernate con la configuración vista en clase.
 Usar MVC con la arquitectura vista en clase.
 La aplicación se desarrollará con interacción por consola.
 
-## 
+## Esquema de la Arquitectura del ejercicio
+
+![](./img/Esquema-Arquitectura-GestionGasolinera.jpg)
+
+## Webgrafía
+
+### Difference Between @JoinColumn and mappedBy
+https://www.baeldung.com/jpa-joincolumn-vs-mappedby
+
+## Solución de Errores
+

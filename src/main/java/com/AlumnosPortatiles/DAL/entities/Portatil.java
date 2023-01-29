@@ -12,13 +12,12 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import com.AlumnosPortatiles.tools.Tools;
+import com.AlumnosPortatiles.UIL.tools.Tools;
 
 
 @Entity
@@ -48,8 +47,7 @@ public class Portatil implements Serializable {
 	private String portatil_modelo;
 	
 	/******************************************* RELACIONES *********************************************/
-	@OneToOne(optional = true, cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
-	@JoinColumn(name = "alumno_id")
+	@OneToOne(mappedBy = "portatil", optional = true, cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
 	private Alumno alumno;
 	
 	
@@ -61,7 +59,7 @@ public class Portatil implements Serializable {
 		this.portatil_date = Calendar.getInstance();
 		this.portatil_marca = portatil_marca;
 		this.portatil_modelo = portatil_modelo;
-		this.alumno = new Alumno();
+		// this.alumno = new Alumno();
 	}
 
 	// constructor vacío
@@ -151,15 +149,29 @@ public class Portatil implements Serializable {
 	
 	/******************************************* ToString *********************************************/
 	@Override
-	public String toString() {
-		return "\nPortatil [" + 
+	public String toString() {	// con una simple comprobación de si el alumno es nulo o no, podríamos añadir al menú una opción 7 de listar todos los portatiles, y al final de cada uno ver el id del alumno asignado o ver una interrogación si aún no está asignado
+		if (alumno != null) {
+			return "\nPortatil [" + 
 					"portatil_uuid=" + portatil_uuid + 
 					", portatil_id=" + portatil_id + 
-					", portatil_date=" + portatil_date + 
+					", portatil_date=" + portatil_date.getTime() + 
 					", portatil_marca=" + portatil_marca + 
 					", portatil_modelo=" + portatil_modelo + 
-					", alumno=" + alumno + 
+					// ", alumno=" + alumno +	// no tiene sentido mostrar al alumno entero aquí, porque si un alumno también muestra ya de por sí un portatil, esto nos llevaría entonces a un bucle infinito de presentaciones
+					", alumno_id=" + alumno.getAlumno_id() +
 				"]";
+		}
+		else {
+			return "\nPortatil [" + 
+					"portatil_uuid=" + portatil_uuid + 
+					", portatil_id=" + portatil_id + 
+					", portatil_date=" + portatil_date.getTime() + 
+					", portatil_marca=" + portatil_marca + 
+					", portatil_modelo=" + portatil_modelo + 
+					// ", alumno=" + alumno +	// no tiene sentido mostrar al alumno entero aquí, porque si un alumno también muestra ya de por sí un portatil, esto nos llevaría entonces a un bucle infinito de presentaciones
+					", alumno_id=?" +
+				"]";
+		}
 	}
 	
 }

@@ -11,20 +11,23 @@ import com.AlumnosPortatiles.BLL.services.implementations.AlumnoServiceImpl;
 import com.AlumnosPortatiles.BLL.services.implementations.PortatilServiceImpl;
 import com.AlumnosPortatiles.BLL.services.interfaces.IAlumnoService;
 import com.AlumnosPortatiles.BLL.services.interfaces.IPortatilService;
-import com.AlumnosPortatiles.tools.Tools;
+import com.AlumnosPortatiles.UIL.tools.Tools;
+
 
 @Controller("App")
 public class App {
 	
 	// Create an EntityManagerFactory when you start the application
     private static EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("AlumnosPortatiles");
+    
     private static Scanner scanner = new Scanner(System.in);
+    
     
 	public static void main(String[] args) throws Exception {
 
 		IPortatilService portatilService = new PortatilServiceImpl();
 		IAlumnoService alumnoService = new AlumnoServiceImpl();
-				
+		
 		int opcion = 0;
 				
 		do {
@@ -56,8 +59,11 @@ public class App {
 				case 6:
 					alumnoService.mostrarListaDeAlumnos();
 					break;
-			}
 					
+				case 7:
+					portatilService.mostrarListaDePortatiles();
+			}
+			
 		} while (opcion != 0);
 		
 		Tools.pararPrograma();

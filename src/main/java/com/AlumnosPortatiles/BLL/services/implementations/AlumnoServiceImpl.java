@@ -11,7 +11,7 @@ import com.AlumnosPortatiles.BLL.services.interfaces.IAlumnoService;
 import com.AlumnosPortatiles.BLL.services.interfaces.IPortatilService;
 import com.AlumnosPortatiles.DAL.entities.Alumno;
 import com.AlumnosPortatiles.DAL.entities.Portatil;
-import com.AlumnosPortatiles.tools.Tools;
+import com.AlumnosPortatiles.UIL.tools.Tools;
 
 
 @Service("AlumnoServiceImpl")

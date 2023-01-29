@@ -9,6 +9,7 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.NoResultException;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceUnit;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Repository;
@@ -23,7 +24,7 @@ public class PortatilRepositoryImpl implements IPortatilRepository {
 	
 	/** The entity manager factory. */
 	@PersistenceUnit(name = "AlumnosPortatiles")
-    private EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("GestionGasolinera");
+    private EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("AlumnosPortatiles");
 
 	
 	
@@ -57,8 +58,8 @@ public class PortatilRepositoryImpl implements IPortatilRepository {
 				    	
 		finally {
 			// Close EntityManager
-			entityManager.flush();
-			entityManager.clear();
+			// entityManager.flush();
+			// entityManager.clear();
 			entityManager.close();
 		}
 				    	
@@ -100,8 +101,8 @@ public class PortatilRepositoryImpl implements IPortatilRepository {
 				    	
 		finally {
 			// Close EntityManager
-			entityManager.flush();
-			entityManager.clear();
+			// entityManager.flush();
+			// entityManager.clear();
 			entityManager.close();
 		}
 				    	
@@ -142,8 +143,8 @@ public class PortatilRepositoryImpl implements IPortatilRepository {
 				        
 		} finally {
 			// Close EntityManager
-			entityManager.flush();
-			entityManager.clear();
+			// entityManager.flush();
+			// entityManager.clear();
 			entityManager.close();
 		}
 	}
@@ -162,30 +163,43 @@ public class PortatilRepositoryImpl implements IPortatilRepository {
 	public void editPortatil(long portatil_id, String portatil_marca, String portatil_modelo) throws Exception {
 		// The EntityManager class allows operations such as create, read, update, delete
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
+		// Used to issue transactions on the EntityManager
+		EntityTransaction entityTransaction = null;
+				
 		// the lowercase a refers to the object
     	// :objectID is a parameterized query thats value is set below
-		String query = "UPDATE Portatil p SET p.portatil_marca = :portatilMARCA, p.portatil_modelo = :portatilMODELO WHERE p.id = :portatilID";
+		String jpql = "UPDATE Portatil p SET p.portatil_marca = :portatilMARCA, p.portatil_modelo = :portatilMODELO WHERE p.id = :portatilID";
     	
 		// Issue the query and get a matching object
-    	TypedQuery<Portatil> typedQuery = entityManager.createQuery(query, Portatil.class);
-    	typedQuery.setParameter("portatilID", portatil_id);
-    	typedQuery.setParameter("portatilMARCA", portatil_marca);
-    	typedQuery.setParameter("portatilMODELO", portatil_modelo);
+    	Query query = entityManager.createQuery(jpql);
+    	query.setParameter("portatilID", portatil_id);
+    	query.setParameter("portatilMARCA", portatil_marca);
+    	query.setParameter("portatilMODELO", portatil_modelo);
     	
     	int nRegistrosEditados = 0;
     	
     	try {
+    		// Get transaction and start
+		    entityTransaction = entityManager.getTransaction();
+		    entityTransaction.begin();
+		    
     		// Get matching the object and output
-    		nRegistrosEditados = typedQuery.executeUpdate();
+    		nRegistrosEditados = query.executeUpdate();
+    		entityTransaction.commit();
     		System.out.println("\n\n[INFO] -Numero de portatiles editados: " + nRegistrosEditados);
 		
     	} catch (Exception ex) {
+    		// If there is an exception rollback changes
+		    if (entityTransaction != null) {
+		    	entityTransaction.rollback();
+		    }
+		    
 			ex.printStackTrace();
 		
     	} finally {
     		// Close EntityManager
-    		entityManager.flush();
-    		entityManager.clear();
+    		// entityManager.flush();
+    		// entityManager.clear();
     		entityManager.close();
 		}
 	}
@@ -234,8 +248,8 @@ public class PortatilRepositoryImpl implements IPortatilRepository {
 				        
 		} finally {
 			// Close EntityManager
-			entityManager.flush();
-			entityManager.clear();
+			// entityManager.flush();
+			// entityManager.clear();
 			entityManager.close();
 		}
 	}
@@ -253,29 +267,41 @@ public class PortatilRepositoryImpl implements IPortatilRepository {
 	public void deleteByIdPortatil(long portatil_id) throws Exception {
 		// The EntityManager class allows operations such as create, read, update, delete
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
+		// Used to issue transactions on the EntityManager
+		EntityTransaction entityTransaction = null;
 				
 		// the lowercase p refers to the object
 		// :objectID is a parameterized query thats value is set below
-		String query = "DELETE FROM Portatil p WHERE p.id = :portatilID";
+		String jpql = "DELETE FROM Portatil p WHERE p.id = :portatilID";
 		    	
 		// Issue the query and get a matching object
-		TypedQuery<Portatil> typedQuery = entityManager.createQuery(query, Portatil.class);
-		typedQuery.setParameter("portatilID", portatil_id);
+		Query query = entityManager.createQuery(jpql);
+		query.setParameter("portatilID", portatil_id);
 		    	
 		int nRegistrosEliminados = 0;
 		    	
 		try {
+			// Get transaction and start
+		    entityTransaction = entityManager.getTransaction();
+		    entityTransaction.begin();
+		    
 			// Get matching the object and output
-		    nRegistrosEliminados = typedQuery.executeUpdate();
+		    nRegistrosEliminados = query.executeUpdate();
+		    entityTransaction.commit();
 		    System.out.println("\n\n[INFO] -Numero de portatiles eliminados: " + nRegistrosEliminados);
 				
 		} catch (Exception ex) {
+			// If there is an exception rollback changes
+		    if (entityTransaction != null) {
+		    	entityTransaction.rollback();
+		    }
+		    
 			ex.printStackTrace();
 				
 		} finally {
 			// Close EntityManager
-		    entityManager.flush();
-		    entityManager.clear();
+		    // entityManager.flush();
+		    // entityManager.clear();
 		    entityManager.close();
 		}
 	}
@@ -316,8 +342,8 @@ public class PortatilRepositoryImpl implements IPortatilRepository {
 				        
 		} finally {
 			// Close EntityManager
-			entityManager.flush();
-			entityManager.clear();
+			// entityManager.flush();
+			// entityManager.clear();
 			entityManager.close();
 		}
 	}
@@ -355,8 +381,8 @@ public class PortatilRepositoryImpl implements IPortatilRepository {
 		        
 		} finally {
 			// Close EntityManager
-		    entityManager.flush();
-		    entityManager.clear();
+		    // entityManager.flush();
+		    // entityManager.clear();
 		    entityManager.close();
 		}
 	}

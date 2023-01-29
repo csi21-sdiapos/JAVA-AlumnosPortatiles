@@ -1,4 +1,4 @@
-package com.AlumnosPortatiles.tools;
+package com.AlumnosPortatiles.UIL.tools;
 
 import java.util.Scanner;
 import java.util.UUID;
@@ -16,15 +16,15 @@ public class Tools {
 	 */
 	public static void showMenu() {
 		System.out.println("\n\n\n\n\n\n\t\t\t╔════════════════════════════════════════════╗");
-        System.out.println("\t\t\t║ Opciones de la Gasolinera                  ║");
+        System.out.println("\t\t\t║ Opciones del instituto                     ║");
         System.out.println("\t\t\t╠════════════════════════════════════════════╣");
-        System.out.println("\t\t\t║ 1) Respostaje con Ticket                   ║");
-        System.out.println("\t\t\t║ 2) Repostaje con Factura                   ║");
-        System.out.println("\t\t\t║ 3) Ver todos los repostajes                ║");
-        System.out.println("\t\t\t║ 4) Importe total del combustible vendido   ║");
-        System.out.println("\t\t\t║ 5) Llenado de depósito                     ║");
-        System.out.println("\t\t\t║ 6) Eliminar el último llenado de depósito  ║");
-        System.out.println("\t\t\t║ 7) Ver todos los llenados de depósito      ║");
+        System.out.println("\t\t\t║ 1) Matrículo de un alumno                  ║");
+        System.out.println("\t\t\t║ 2) Baja de un alumno                       ║");
+        System.out.println("\t\t\t║ 3) Alta de portatil                        ║");
+        System.out.println("\t\t\t║ 4) Consulta portatil asignado a un alumno  ║");
+        System.out.println("\t\t\t║ 5) Consulta alumno asignado a un portatil  ║");
+        System.out.println("\t\t\t║ 6) Ver todos los alumnos con su portatil   ║");
+        System.out.println("\t\t\t║ 7) Ver todos los portatiles                ║");
         System.out.println("\t\t\t║                                            ║");
         System.out.println("\t\t\t║ 0) Salir                                   ║");
         System.out.println("\t\t\t║                                            ║");
@@ -39,16 +39,16 @@ public class Tools {
 	 * @return the int
 	 */
 	public static int showMenuAndSelectOption() {
-        System.out.println("\n\n\n\n\n\n\t\t\t╔════════════════════════════════════════════╗");
-        System.out.println("\t\t\t║ Opciones de la Gasolinera                  ║");
+		System.out.println("\n\n\n\n\n\n\t\t\t╔════════════════════════════════════════════╗");
+        System.out.println("\t\t\t║ Opciones del instituto                     ║");
         System.out.println("\t\t\t╠════════════════════════════════════════════╣");
-        System.out.println("\t\t\t║ 1) Respostaje con Ticket                   ║");
-        System.out.println("\t\t\t║ 2) Repostaje con Factura                   ║");
-        System.out.println("\t\t\t║ 3) Ver todos los repostajes                ║");
-        System.out.println("\t\t\t║ 4) Importe total del combustible vendido   ║");
-        System.out.println("\t\t\t║ 5) Llenado de depósito                     ║");
-        System.out.println("\t\t\t║ 6) Eliminar el último llenado de depósito  ║");
-        System.out.println("\t\t\t║ 7) Ver todos los llenados de depósito      ║");
+        System.out.println("\t\t\t║ 1) Matrículo de un alumno                  ║");
+        System.out.println("\t\t\t║ 2) Baja de un alumno                       ║");
+        System.out.println("\t\t\t║ 3) Alta de portatil                        ║");
+        System.out.println("\t\t\t║ 4) Consulta portatil asignado a un alumno  ║");
+        System.out.println("\t\t\t║ 5) Consulta alumno asignado a un portatil  ║");
+        System.out.println("\t\t\t║ 6) Ver todos los alumnos con su portatil   ║");
+        System.out.println("\t\t\t║ 7) Ver todos los portatiles                ║");
         System.out.println("\t\t\t║                                            ║");
         System.out.println("\t\t\t║ 0) Salir                                   ║");
         System.out.println("\t\t\t║                                            ║");

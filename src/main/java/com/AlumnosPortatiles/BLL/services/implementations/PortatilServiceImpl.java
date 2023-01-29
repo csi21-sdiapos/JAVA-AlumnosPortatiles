@@ -9,7 +9,7 @@ import com.AlumnosPortatiles.BLL.queries.implementations.PortatilQueryImpl;
 import com.AlumnosPortatiles.BLL.queries.interfaces.IPortatilQuery;
 import com.AlumnosPortatiles.BLL.services.interfaces.IPortatilService;
 import com.AlumnosPortatiles.DAL.entities.Portatil;
-import com.AlumnosPortatiles.tools.Tools;
+import com.AlumnosPortatiles.UIL.tools.Tools;
 
 
 @Service("PortatilServiceImpl")

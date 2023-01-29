@@ -9,6 +9,7 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.NoResultException;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceUnit;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Repository;
@@ -23,7 +24,7 @@ public class AlumnoRepositoryImpl implements IAlumnoRepository {
 	
 	/** The entity manager factory. */
 	@PersistenceUnit(name = "AlumnosPortatiles")
-    private EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("GestionGasolinera");
+    private EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("AlumnosPortatiles");
 
 	
 	
@@ -57,8 +58,8 @@ public class AlumnoRepositoryImpl implements IAlumnoRepository {
 		    	
 		finally {
 			// Close EntityManager
-		    entityManager.flush();
-			entityManager.clear();
+		    // entityManager.flush();
+			// entityManager.clear();
 		    entityManager.close();
 		}
 		    	
@@ -100,8 +101,8 @@ public class AlumnoRepositoryImpl implements IAlumnoRepository {
 		    	
 		finally {
 			// Close EntityManager
-			entityManager.flush();
-		    entityManager.clear();
+			// entityManager.flush();
+		    // entityManager.clear();
 		    entityManager.close();
 		}
 		    	
@@ -142,8 +143,8 @@ public class AlumnoRepositoryImpl implements IAlumnoRepository {
 		        
 		} finally {
 			// Close EntityManager
-		    entityManager.flush();
-		    entityManager.clear();
+		    // entityManager.flush();
+		    // entityManager.clear();
 		    entityManager.close();
 		}
 	}
@@ -164,32 +165,44 @@ public class AlumnoRepositoryImpl implements IAlumnoRepository {
 	public void editAlumno(long alumno_id, String alumno_nombre, String alumno_apellidos, String alumno_telefono) throws Exception {
 		// The EntityManager class allows operations such as create, read, update, delete
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
-
+		// Used to issue transactions on the EntityManager
+		EntityTransaction entityTransaction = null;
+						
 		// the lowercase a refers to the object
-    	// :objectID is a parameterized query thats value is set below
-		String query = "UPDATE Alumno a SET a.alumno_nombre = :alumnoNOMBRE, a.alumno_apellidos = :alumnoAPELLIDOS, a.alumno_telefono = :alumnoTELEFONO WHERE a.id = :alumnoID";
-    	
+		// :objectID is a parameterized query thats value is set below
+		String jpql = "UPDATE Alumno a SET a.alumno_nombre = :alumnoNOMBRE, a.alumno_apellidos = :alumnoAPELLIDOS, a.alumno_telefono = :alumnoTELEFONO WHERE a.id = :alumnoID";
+		
 		// Issue the query and get a matching object
-    	TypedQuery<Alumno> typedQuery = entityManager.createQuery(query, Alumno.class);
-    	typedQuery.setParameter("alumnoID", alumno_id);
-    	typedQuery.setParameter("alumnoNOMBRE", alumno_nombre);
-    	typedQuery.setParameter("alumnoAPELLIDOS", alumno_apellidos);
-    	typedQuery.setParameter("alumnoTELEFONO", alumno_telefono);
+		Query query = entityManager.createQuery(jpql);
+		query.setParameter("alumnoID", alumno_id);
+		query.setParameter("alumnoNOMBRE", alumno_nombre);
+		query.setParameter("alumnoAPELLIDOS", alumno_apellidos);
+		query.setParameter("alumnoTELEFONO", alumno_telefono);
     	
     	int nRegistrosEditados = 0;
     	
     	try {
+    		// Get transaction and start
+		    entityTransaction = entityManager.getTransaction();
+		    entityTransaction.begin();
+		    
     		// Get matching the object and output
-    		nRegistrosEditados = typedQuery.executeUpdate();
+    		nRegistrosEditados = query.executeUpdate();
+    		entityTransaction.commit();
     		System.out.println("\n\n[INFO] -Numero de alumnos editados: " + nRegistrosEditados);
 		
     	} catch (Exception ex) {
+    		// If there is an exception rollback changes
+		    if (entityTransaction != null) {
+		    	entityTransaction.rollback();
+		    }
+		    
 			ex.printStackTrace();
 		
     	} finally {
     		// Close EntityManager
-    		entityManager.flush();
-    		entityManager.clear();
+    		// entityManager.flush();
+    		// entityManager.clear();
     		entityManager.close();
 		}
 	}
@@ -241,8 +254,8 @@ public class AlumnoRepositoryImpl implements IAlumnoRepository {
 		        
 		} finally {
 			// Close EntityManager
-			entityManager.flush();
-		    entityManager.clear();
+			// entityManager.flush();
+		    // entityManager.clear();
 		    entityManager.close();
 		}
 	}
@@ -256,34 +269,45 @@ public class AlumnoRepositoryImpl implements IAlumnoRepository {
 	 * @param alumno_id the alumno id
 	 * @throws Exception the exception
 	 */
-
 	@Override
 	public void deleteByIdAlumno(long alumno_id) throws Exception {
 		// The EntityManager class allows operations such as create, read, update, delete
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
-		
+		// Used to issue transactions on the EntityManager
+		EntityTransaction entityTransaction = null;
+				
 		// the lowercase a refers to the object
     	// :objectID is a parameterized query thats value is set below
-		String query = "DELETE FROM Alumno a WHERE a.id = :alumnoID";
+		String jpql = "DELETE FROM Alumno a WHERE a.id = :alumnoID";
     	
 		// Issue the query and get a matching object
-    	TypedQuery<Alumno> typedQuery = entityManager.createQuery(query, Alumno.class);
-    	typedQuery.setParameter("alumnoID", alumno_id);
+		Query query = entityManager.createQuery(jpql);
+    	query.setParameter("alumnoID", alumno_id);
     	
     	int nRegistrosEliminados = 0;
     	
     	try {
+    		// Get transaction and start
+		    entityTransaction = entityManager.getTransaction();
+		    entityTransaction.begin();
+		    
     		// Get matching the object and output
-    		nRegistrosEliminados = typedQuery.executeUpdate();
+    		nRegistrosEliminados = query.executeUpdate();
+    		entityTransaction.commit();
     		System.out.println("\n\n[INFO] -Numero de alumnos eliminados: " + nRegistrosEliminados);
 		
     	} catch (Exception ex) {
+    		// If there is an exception rollback changes
+		    if (entityTransaction != null) {
+		    	entityTransaction.rollback();
+		    }
+		    
 			ex.printStackTrace();
 		
     	} finally {
     		// Close EntityManager
-    		entityManager.flush();
-    		entityManager.clear();
+    		// entityManager.flush();
+    		// entityManager.clear();
     		entityManager.close();
 		}
 	}
@@ -325,8 +349,8 @@ public class AlumnoRepositoryImpl implements IAlumnoRepository {
 		        
 		} finally {
 			// Close EntityManager
-		    entityManager.flush();
-		    entityManager.clear();
+		    // entityManager.flush();
+		    // entityManager.clear();
 		    entityManager.close();
 		}
 	}
@@ -363,8 +387,8 @@ public class AlumnoRepositoryImpl implements IAlumnoRepository {
 		        
 		} finally {
 			// Close EntityManager
-		    entityManager.flush();
-		    entityManager.clear();
+		    // entityManager.flush();
+		    // entityManager.clear();
 		    entityManager.close();
 		}
 	}

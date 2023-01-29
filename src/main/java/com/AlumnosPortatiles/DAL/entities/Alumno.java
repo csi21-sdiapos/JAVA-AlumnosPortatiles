@@ -12,12 +12,13 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import com.AlumnosPortatiles.tools.Tools;
+import com.AlumnosPortatiles.UIL.tools.Tools;
 
 
 @Entity
@@ -50,7 +51,8 @@ public class Alumno implements Serializable {
 	private String alumno_telefono;
 	
 	/******************************************* RELACIONES *********************************************/
-	@OneToOne(mappedBy = "alumno", optional = true, cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+	@OneToOne(optional = true, cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+	@JoinColumn(name = "portatil_id")
 	private Portatil portatil;
 
 	
@@ -167,7 +169,7 @@ public class Alumno implements Serializable {
 		return "\nAlumno [" + 
 					"alumno_uuid=" + alumno_uuid + 
 					", alumno_id=" + alumno_id + 
-					", alumno_date=" + alumno_date + 
+					", alumno_date=" + alumno_date.getTime() + 
 					", alumno_nombre=" + alumno_nombre + 
 					", alumno_apellidos=" + alumno_apellidos + 
 					", alumno_telefono=" + alumno_telefono + 

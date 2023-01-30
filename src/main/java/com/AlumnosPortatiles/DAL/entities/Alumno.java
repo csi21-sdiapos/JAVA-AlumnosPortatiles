@@ -67,7 +67,7 @@ public class Alumno implements Serializable {
 		this.alumno_telefono = alumno_telefono;
 		this.portatil = portatil;
 	}
-
+	
 	// constructor vacío
 	public Alumno() {
 		super();
@@ -167,14 +167,14 @@ public class Alumno implements Serializable {
 	@Override
 	public String toString() {
 		return "\nAlumno [" + 
-					"alumno_uuid=" + alumno_uuid + 
-					", alumno_id=" + alumno_id + 
-					", alumno_date=" + alumno_date.getTime() + 
-					", alumno_nombre=" + alumno_nombre + 
-					", alumno_apellidos=" + alumno_apellidos + 
-					", alumno_telefono=" + alumno_telefono + 
-					", portatil=" + portatil + 
-				"]";
+				"alumno_uuid=" + alumno_uuid + 
+				", alumno_id=" + alumno_id + 
+				", alumno_date=" + alumno_date.getTime() + 
+				", alumno_nombre=" + alumno_nombre + 
+				", alumno_apellidos=" + alumno_apellidos + 
+				", alumno_telefono=" + alumno_telefono + 
+				", portatil=" + portatil + 
+			"]";
 	}
 	
 }

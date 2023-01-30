@@ -38,7 +38,7 @@ public class AlumnoQueryImpl implements IAlumnoQuery {
 			return null;
 		}
 	}
-	
+		
 	
 
 	/**
@@ -144,6 +144,6 @@ public class AlumnoQueryImpl implements IAlumnoQuery {
 			System.out.println("[ERROR] - Error al eliminar el alumno seleccionado: " + e);
 			return false;
 		}
-	}
+	}	
 	
 }

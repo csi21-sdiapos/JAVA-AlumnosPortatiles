@@ -29,7 +29,7 @@ public class PortatilDTO {
 		super();
 		this.portatil_marca = portatil_marca;
 		this.portatil_modelo = portatil_modelo;
-		this.alumno = new Alumno();
+		// this.alumno = null;
 	}
 
 	// constructor vacío

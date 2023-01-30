@@ -210,8 +210,6 @@ public class PortatilRepositoryImpl implements IPortatilRepository {
 	 * Edits the portatil - NO QUERY.
 	 *
 	 * @param portatil_id the portatil id
-	 * @param portatil_marca the portatil marca
-	 * @param portatil_modelo the portatil modelo
 	 * @throws Exception the exception
 	 */
 /*
@@ -310,7 +308,7 @@ public class PortatilRepositoryImpl implements IPortatilRepository {
 	/**
 	 * Delete by id portatil - NO QUERY.
 	 *
-	 * @param portatil_id the portatil id
+	 * @param portatil the portatil
 	 * @throws Exception the exception
 	 */
 /*

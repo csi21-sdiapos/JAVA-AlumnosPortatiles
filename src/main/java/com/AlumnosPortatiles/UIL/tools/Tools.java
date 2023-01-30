@@ -18,13 +18,14 @@ public class Tools {
 		System.out.println("\n\n\n\n\n\n\t\t\t╔════════════════════════════════════════════╗");
         System.out.println("\t\t\t║ Opciones del instituto                     ║");
         System.out.println("\t\t\t╠════════════════════════════════════════════╣");
-        System.out.println("\t\t\t║ 1) Matrículo de un alumno                  ║");
+        System.out.println("\t\t\t║ 1) Matricula de un alumno                  ║");
         System.out.println("\t\t\t║ 2) Baja de un alumno                       ║");
         System.out.println("\t\t\t║ 3) Alta de portatil                        ║");
-        System.out.println("\t\t\t║ 4) Consulta portatil asignado a un alumno  ║");
-        System.out.println("\t\t\t║ 5) Consulta alumno asignado a un portatil  ║");
-        System.out.println("\t\t\t║ 6) Ver todos los alumnos con su portatil   ║");
-        System.out.println("\t\t\t║ 7) Ver todos los portatiles                ║");
+        System.out.println("\t\t\t║ 4) Baja de portatil                        ║");
+        System.out.println("\t\t\t║ 5) Consulta portatil asignado a un alumno  ║");
+        System.out.println("\t\t\t║ 6) Consulta alumno asignado a un portatil  ║");
+        System.out.println("\t\t\t║ 7) Ver todos los alumnos con su portatil   ║");
+        System.out.println("\t\t\t║ 8) Ver todos los portatiles con su alumno  ║");
         System.out.println("\t\t\t║                                            ║");
         System.out.println("\t\t\t║ 0) Salir                                   ║");
         System.out.println("\t\t\t║                                            ║");
@@ -42,19 +43,20 @@ public class Tools {
 		System.out.println("\n\n\n\n\n\n\t\t\t╔════════════════════════════════════════════╗");
         System.out.println("\t\t\t║ Opciones del instituto                     ║");
         System.out.println("\t\t\t╠════════════════════════════════════════════╣");
-        System.out.println("\t\t\t║ 1) Matrículo de un alumno                  ║");
+        System.out.println("\t\t\t║ 1) Matricula de un alumno                  ║");
         System.out.println("\t\t\t║ 2) Baja de un alumno                       ║");
         System.out.println("\t\t\t║ 3) Alta de portatil                        ║");
-        System.out.println("\t\t\t║ 4) Consulta portatil asignado a un alumno  ║");
-        System.out.println("\t\t\t║ 5) Consulta alumno asignado a un portatil  ║");
-        System.out.println("\t\t\t║ 6) Ver todos los alumnos con su portatil   ║");
-        System.out.println("\t\t\t║ 7) Ver todos los portatiles                ║");
+        System.out.println("\t\t\t║ 4) Baja de portatil                        ║");
+        System.out.println("\t\t\t║ 5) Consulta portatil asignado a un alumno  ║");
+        System.out.println("\t\t\t║ 6) Consulta alumno asignado a un portatil  ║");
+        System.out.println("\t\t\t║ 7) Ver todos los alumnos con su portatil   ║");
+        System.out.println("\t\t\t║ 8) Ver todos los portatiles con su alumno  ║");
         System.out.println("\t\t\t║                                            ║");
         System.out.println("\t\t\t║ 0) Salir                                   ║");
         System.out.println("\t\t\t║                                            ║");
         System.out.println("\t\t\t╚════════════════════════════════════════════╝");
         
-        return capturaEntero_v3("Introduzca una opción del menú", 0, 7);
+        return capturaEntero_v3("Introduzca una opcion del menu", 0, 8);
     }
 	
 	
@@ -249,6 +251,21 @@ public class Tools {
 			System.out.println("\n\n[ERROR]: Por favor, responde S o N");
 			
 		} while (true);
+	}
+	
+	public static boolean confirmacionPorNombre(String pregunta, String objeto_nombre) {	// ¿por qué no me funciona bien este método?
+		String nombre;
+		boolean eliminar = false;
+	
+		System.out.print("\n\n" + pregunta + " : (" + objeto_nombre + ")\t");
+		nombre = scanner.next();
+			
+		if (nombre.equals(objeto_nombre))
+			eliminar = true;
+		if (!nombre.equals(objeto_nombre))
+			eliminar = false;
+		
+		return eliminar;
 	}
 	
 	

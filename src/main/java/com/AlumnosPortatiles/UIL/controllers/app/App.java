@@ -19,13 +19,14 @@ public class App {
 	
 	// Create an EntityManagerFactory when you start the application
     private static EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("AlumnosPortatiles");
-    
+    /** The scanner. */
     private static Scanner scanner = new Scanner(System.in);
     
     
 	public static void main(String[] args) throws Exception {
-
+		/** The portatil service. */
 		IPortatilService portatilService = new PortatilServiceImpl();
+		/** The alumno service. */
 		IAlumnoService alumnoService = new AlumnoServiceImpl();
 		
 		int opcion = 0;
@@ -51,17 +52,23 @@ public class App {
 					break;
 							
 				case 4:
+					portatilService.eliminarUnPortatilPorId();
 					break;
 							
 				case 5:
 					break;
 							
 				case 6:
-					alumnoService.mostrarListaDeAlumnos();
+					
 					break;
 					
 				case 7:
+					alumnoService.mostrarListaDeAlumnos();
+					break;
+					
+				case 8:
 					portatilService.mostrarListaDePortatiles();
+					break;
 			}
 			
 		} while (opcion != 0);

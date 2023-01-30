@@ -59,7 +59,7 @@ public class Portatil implements Serializable {
 		this.portatil_date = Calendar.getInstance();
 		this.portatil_marca = portatil_marca;
 		this.portatil_modelo = portatil_modelo;
-		// this.alumno = new Alumno();
+		// this.alumno = null;
 	}
 
 	// constructor vacío
@@ -158,7 +158,7 @@ public class Portatil implements Serializable {
 					", portatil_marca=" + portatil_marca + 
 					", portatil_modelo=" + portatil_modelo + 
 					// ", alumno=" + alumno +	// no tiene sentido mostrar al alumno entero aquí, porque si un alumno también muestra ya de por sí un portatil, esto nos llevaría entonces a un bucle infinito de presentaciones
-					", alumno_id=" + alumno.getAlumno_id() +
+					", \nalumno_id=" + alumno.getAlumno_id() +
 				"]";
 		}
 		else {
@@ -169,7 +169,7 @@ public class Portatil implements Serializable {
 					", portatil_marca=" + portatil_marca + 
 					", portatil_modelo=" + portatil_modelo + 
 					// ", alumno=" + alumno +	// no tiene sentido mostrar al alumno entero aquí, porque si un alumno también muestra ya de por sí un portatil, esto nos llevaría entonces a un bucle infinito de presentaciones
-					", alumno_id=?" +
+					", \nalumno_id=sin asignar" +
 				"]";
 		}
 	}

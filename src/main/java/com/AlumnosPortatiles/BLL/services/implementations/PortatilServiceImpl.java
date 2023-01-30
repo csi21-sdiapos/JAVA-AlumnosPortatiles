@@ -79,7 +79,7 @@ public class PortatilServiceImpl implements IPortatilService {
 		
 		return portatil;
 	}
-
+	
 	
 	
 	/**
@@ -89,14 +89,14 @@ public class PortatilServiceImpl implements IPortatilService {
 	 */
 	@Override
 	public void crearUnNuevoPortatil() throws Exception {
-		System.out.println("\n\nIntroduzca la marca del nuevo portatil");
+		System.out.print("\n\nIntroduzca la marca del nuevo portatil:\t");
 		String portatil_marca = scanner.next();
 		
-		System.out.println("\n\nIntroduzca el modelo del nuevo portatil");
+		System.out.print("\n\nIntroduzca el modelo del nuevo portatil:\t");
 		String portatil_modelo = scanner.next();
 		
 		portatilQueryImpl.insertarPortatil(new Portatil(portatil_marca, portatil_modelo));
-		System.out.println("\n\nEl nuevo portatil " + portatil_marca + " se ha registrado correctamente");
+		System.out.println("\n\nEl nuevo portatil de la marca " + portatil_marca + " y modelo " + portatil_modelo + ", se ha registrado correctamente");
 	}
 
 	
@@ -136,8 +136,9 @@ public class PortatilServiceImpl implements IPortatilService {
 		mostrarListaDePortatiles();
 		
 		int portatil_id = Tools.capturaEntero_v3("Introduzca un número para eliminar ese portatil", 0, 99);
+		Portatil portatil = portatilQueryImpl.buscarPortatilPorId(portatil_id);
 		
-		if (Tools.preguntaSiNo("¿Está seguro de que desea eliminar el portatil seleccionado?")) {
+		if (Tools.confirmacionPorNombre("Para eliminar el portatil seleccionado, escriba su modelo", portatil.getPortatil_modelo())) {
 			portatilQueryImpl.eliminarPortatilPorId(portatil_id);
 			System.out.println("\n\nEl portatil seleccionado se ha eliminado correctamente");
 		}

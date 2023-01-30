@@ -84,7 +84,7 @@ public class AlumnoServiceImpl implements IAlumnoService {
 		
 		return alumno;
 	}
-
+	
 	
 	
 	/**
@@ -98,7 +98,7 @@ public class AlumnoServiceImpl implements IAlumnoService {
 		String alumno_nombre = scanner.next();
 		
 		System.out.print("\n\nIntroduzca los apellidos del nuevo alumno:\t");
-		String alumno_apellidos = scanner.nextLine();
+		String alumno_apellidos = scanner.next();
 		
 		System.out.print("\n\nIntroduzca el teléfono del nuevo alumno:\t");
 		String alumno_telefono = scanner.next();
@@ -126,7 +126,7 @@ public class AlumnoServiceImpl implements IAlumnoService {
 		String alumno_nombre = scanner.next();
 		
 		System.out.print("\n\nIntroduzca los nuevos apellidos para el alumno seleccionado:\t");
-		String alumno_apellidos = scanner.nextLine();
+		String alumno_apellidos = scanner.next();
 		
 		System.out.print("\n\nIntroduzca un nuevo teléfono para el alumno seleccionado:\t");
 		String alumno_telefono = scanner.next();
@@ -136,7 +136,7 @@ public class AlumnoServiceImpl implements IAlumnoService {
 	}
 	
 	
-
+	
 	/**
 	 * Eliminar un alumno por id.
 	 *
@@ -150,8 +150,9 @@ public class AlumnoServiceImpl implements IAlumnoService {
 		mostrarListaDeAlumnos();
 		
 		int alumno_id = Tools.capturaEntero_v3("Introduzca un número para eliminar ese alumno", 0, 99);
+		Alumno alumno = alumnoQueryImpl.buscarAlumnoPorId(alumno_id);
 		
-		if (Tools.preguntaSiNo("¿Está seguro de que desea eliminar el alumno seleccionado?")) {
+		if (Tools.confirmacionPorNombre("Para eliminar el alumno seleccionado, escriba su nombre", alumno.getAlumno_nombre())) {
 			alumnoQueryImpl.eliminarAlumnoPorId(alumno_id);
 			System.out.println("\n\nEl alumno seleccionado se ha eliminado correctamente");
 		}
@@ -180,5 +181,5 @@ public class AlumnoServiceImpl implements IAlumnoService {
 			System.out.println("\n\nEl alumno seleccionado NO se ha eliminado");
 		}
 	}
-	
+
 }

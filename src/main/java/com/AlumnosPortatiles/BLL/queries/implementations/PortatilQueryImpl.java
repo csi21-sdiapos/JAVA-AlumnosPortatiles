@@ -38,7 +38,7 @@ public class PortatilQueryImpl implements IPortatilQuery {
 			return null;
 		}
 	}
-
+	
 	
 	
 	/**

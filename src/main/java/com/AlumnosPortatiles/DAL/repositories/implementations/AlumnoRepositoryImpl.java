@@ -65,7 +65,7 @@ public class AlumnoRepositoryImpl implements IAlumnoRepository {
 		    	
 		return listaAlumnos;
 	}
-
+	
 	
 	
 	/**
@@ -213,10 +213,6 @@ public class AlumnoRepositoryImpl implements IAlumnoRepository {
 	 * Edits the alumno - NO QUERY.
 	 *
 	 * @param alumno_id the alumno id
-	 * @param alumno_nombre the alumno nombre
-	 * @param alumno_apellidos the alumno apellidos
-	 * @param alumno_telefono the alumno telefono
-	 * No recibe ningún portatil porque el enunciado dice que el portatil siempre será el mismo para el alumno
 	 * @throws Exception the exception
 	 */
 /*
@@ -317,7 +313,7 @@ public class AlumnoRepositoryImpl implements IAlumnoRepository {
 	/**
 	 * Delete by id alumno - NO QUERY.
 	 *
-	 * @param alumno_id the alumno id
+	 * @param alumno the alumno
 	 * @throws Exception the exception
 	 */
 /*

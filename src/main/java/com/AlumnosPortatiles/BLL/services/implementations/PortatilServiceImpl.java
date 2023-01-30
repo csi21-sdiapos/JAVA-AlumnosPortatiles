@@ -59,6 +59,24 @@ public class PortatilServiceImpl implements IPortatilService {
 		Portatil portatil = portatilQueryImpl.buscarPortatilPorId(portatil_id);
 		System.out.println(portatil.toString());
 	}
+	
+	
+	
+	/**
+	 * Mostrar el alumno de un portatil.
+	 *
+	 * @throws Exception the exception
+	 */
+	@Override
+	public void mostrarElAlumnoDeUnPortatil() throws Exception {
+		System.out.println("\n\nLista de portatiles");
+		System.out.println("------------------------------");
+		mostrarListaDePortatiles();
+		
+		int portatil_id = Tools.capturaEntero_v3("Introduzca un número de portatil para mostrar su alumno asignado", 0, 99);
+		Portatil portatil = portatilQueryImpl.buscarPortatilPorId(portatil_id);
+		System.out.println("\n\n" + portatil.getPortatil_id() + " - " + portatil.getPortatil_marca() + " - " + portatil.getPortatil_modelo() + " --> " + portatil.getAlumno().getAlumno_id() + " - " + portatil.getAlumno().getAlumno_apellidos() + ", " + portatil.getAlumno().getAlumno_nombre());
+	}
 
 	
 	

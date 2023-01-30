@@ -107,6 +107,16 @@ https://www.baeldung.com/hibernate-initialize-proxy-exception
 
 https://www.baeldung.com/jpa-transaction-required-exception
 
+## Funcionalidades extras no implementadas
+
+1. Que se pueda matricular un nuevo alumno sin asignar ningún portatil
+2. Que a un alumno sin portatil se le pueda asignar uno más tarde
+
+## Excepciones no controladas
+
+1. Que no se pueda dar de baja un portátil que está asignado a un alumno
+2. Que cuando se de el alta a un alumno no se pueda elegir un portatil que ya esté asignado
+
 ## Prueba de Ejecución
 
-[Prueba de ejecución Gestión Gasolinera](https://user-images.githubusercontent.com/91122596/214709362-73bcf02d-e273-4b89-ac5e-e6a413752de3.mp4))
+[Prueba de ejecución Gestión Gasolinera](https://user-images.githubusercontent.com/91122596/214709362-73bcf02d-e273-4b89-ac5e-e6a413752de3.mp4)

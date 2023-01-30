@@ -15,7 +15,7 @@ public class Tools {
 	 * Show menu.
 	 */
 	public static void showMenu() {
-		System.out.println("\n\n\n\n\n\n\t\t\t╔════════════════════════════════════════════╗");
+		System.out.println("\n\n\n\n\t\t\t╔════════════════════════════════════════════╗");
         System.out.println("\t\t\t║ Opciones del instituto                     ║");
         System.out.println("\t\t\t╠════════════════════════════════════════════╣");
         System.out.println("\t\t\t║ 1) Matricula de un alumno                  ║");
@@ -40,7 +40,7 @@ public class Tools {
 	 * @return the int
 	 */
 	public static int showMenuAndSelectOption() {
-		System.out.println("\n\n\n\n\n\n\t\t\t╔════════════════════════════════════════════╗");
+		System.out.println("\n\n\n\n\t\t\t╔════════════════════════════════════════════╗");
         System.out.println("\t\t\t║ Opciones del instituto                     ║");
         System.out.println("\t\t\t╠════════════════════════════════════════════╣");
         System.out.println("\t\t\t║ 1) Matricula de un alumno                  ║");

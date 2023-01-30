@@ -25,6 +25,15 @@ public interface IAlumnoService {
 	
 	
 	/**
+	 * Mostrar el portatil de un alumno.
+	 *
+	 * @throws Exception the exception
+	 */
+	public void mostrarElPortatilDeUnAlumno() throws Exception;
+	
+	
+	
+	/**
 	 * Seleccionar un alumno.
 	 *
 	 * @return the alumno

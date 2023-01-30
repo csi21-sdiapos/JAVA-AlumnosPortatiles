@@ -6,7 +6,9 @@ import java.util.Scanner;
 import org.springframework.stereotype.Service;
 
 import com.AlumnosPortatiles.BLL.queries.implementations.AlumnoQueryImpl;
+import com.AlumnosPortatiles.BLL.queries.implementations.PortatilQueryImpl;
 import com.AlumnosPortatiles.BLL.queries.interfaces.IAlumnoQuery;
+import com.AlumnosPortatiles.BLL.queries.interfaces.IPortatilQuery;
 import com.AlumnosPortatiles.BLL.services.interfaces.IAlumnoService;
 import com.AlumnosPortatiles.BLL.services.interfaces.IPortatilService;
 import com.AlumnosPortatiles.DAL.entities.Alumno;
@@ -23,6 +25,9 @@ public class AlumnoServiceImpl implements IAlumnoService {
 	
 	/** The alumno query impl. */
 	IAlumnoQuery alumnoQueryImpl = new AlumnoQueryImpl();
+	
+	/** The portatil query impl. */
+	IPortatilQuery portatilQueryImpl = new PortatilQueryImpl();
 	
 	/** The portatil service impl. */
 	IPortatilService portatilServiceImpl = new PortatilServiceImpl();
@@ -66,6 +71,24 @@ public class AlumnoServiceImpl implements IAlumnoService {
 	}
 	
 	
+	
+	/**
+	 * Mostrar el portatil de un alumno.
+	 *
+	 * @throws Exception the exception
+	 */
+	@Override
+	public void mostrarElPortatilDeUnAlumno() throws Exception {
+		System.out.println("\n\nLista de alumnos matriculados");
+		System.out.println("------------------------------");
+		mostrarListaDeAlumnos();
+		
+		int alumno_id = Tools.capturaEntero_v3("Introduzca un número de alumno para mostrar su portatil asignado", 0, 99);
+		Alumno alumno = alumnoQueryImpl.buscarAlumnoPorId(alumno_id);
+		System.out.println("\n\n" + alumno.getAlumno_id() + " - " + alumno.getAlumno_apellidos() + ", " + alumno.getAlumno_nombre() + " --> " + alumno.getPortatil().getPortatil_id() + " - " + alumno.getPortatil().getPortatil_marca() + " - " + alumno.getPortatil().getPortatil_modelo());
+	}
+	
+	
 
 	/**
 	 * Seleccionar un alumno.
@@ -94,20 +117,28 @@ public class AlumnoServiceImpl implements IAlumnoService {
 	 */
 	@Override
 	public void crearUnNuevoAlumno() throws Exception {
-		System.out.print("\n\nIntroduzca el nombre del nuevo alumno:\t");
-		String alumno_nombre = scanner.next();
+		List<Portatil> listaPortatiles = portatilQueryImpl.listarPortatiles();
 		
-		System.out.print("\n\nIntroduzca los apellidos del nuevo alumno:\t");
-		String alumno_apellidos = scanner.next();
-		
-		System.out.print("\n\nIntroduzca el teléfono del nuevo alumno:\t");
-		String alumno_telefono = scanner.next();
-		
-		System.out.print("\n\nSeleccione el portatil a asignar al nuevo alumno");
-		Portatil portatil = portatilServiceImpl.seleccionarUnPortatil();
-		
-		alumnoQueryImpl.insertarAlumno(new Alumno(alumno_nombre, alumno_apellidos, alumno_telefono, portatil));
-		System.out.println("\n\nEl nuevo alumno " + alumno_nombre + " se ha matriculado correctamente");
+		if (listaPortatiles.size() > 0) {
+			System.out.print("\n\nIntroduzca el nombre del nuevo alumno:\t");
+			String alumno_nombre = scanner.next();
+			
+			System.out.print("\n\nIntroduzca los apellidos del nuevo alumno:\t");
+			String alumno_apellidos = scanner.next();
+			
+			System.out.print("\n\nIntroduzca el teléfono del nuevo alumno:\t");
+			String alumno_telefono = scanner.next();
+			
+			System.out.print("\n\nSeleccione el portatil a asignar al nuevo alumno");
+			Portatil portatil = portatilServiceImpl.seleccionarUnPortatil();
+			
+			alumnoQueryImpl.insertarAlumno(new Alumno(alumno_nombre, alumno_apellidos, alumno_telefono, portatil));
+			System.out.println("\n\nEl nuevo alumno " + alumno_nombre + " se ha matriculado correctamente");
+		}
+		else {
+			System.out.println("\n\nLo sentimos, pero aún no hay portatiles para matricular nuevos alumnos");
+			System.out.println("\nRegistre un portatil en primer lugar");
+		}
 	}
 	
 	

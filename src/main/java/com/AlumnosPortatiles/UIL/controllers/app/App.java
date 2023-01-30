@@ -56,10 +56,11 @@ public class App {
 					break;
 							
 				case 5:
+					alumnoService.mostrarElPortatilDeUnAlumno();
 					break;
 							
 				case 6:
-					
+					portatilService.mostrarElAlumnoDeUnPortatil();
 					break;
 					
 				case 7:

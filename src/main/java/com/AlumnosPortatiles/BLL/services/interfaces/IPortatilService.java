@@ -25,6 +25,15 @@ public interface IPortatilService {
 	
 	
 	/**
+	 * Mostrar el alumno de un portatil.
+	 *
+	 * @throws Exception the exception
+	 */
+	public void mostrarElAlumnoDeUnPortatil() throws Exception;
+	
+	
+	
+	/**
 	 * Seleccionar un portatil.
 	 *
 	 * @return the portatil

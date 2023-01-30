@@ -119,4 +119,4 @@ https://www.baeldung.com/jpa-transaction-required-exception
 
 ## Prueba de Ejecución
 
-[Prueba de ejecución Gestión Gasolinera](https://user-images.githubusercontent.com/91122596/214709362-73bcf02d-e273-4b89-ac5e-e6a413752de3.mp4)
+[Prueba de ejecución - Gestión de Alumnos y Portátiles](https://user-images.githubusercontent.com/91122596/215562527-4dd6c3e5-e8b5-4bc4-8cf3-eff66453ab3f.mp4)

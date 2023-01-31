@@ -1,5 +1,29 @@
 # Gestión material en préstamo a alumnos
 
+- [Gestión material en préstamo a alumnos](#gestión-material-en-préstamo-a-alumnos)
+  - [Enunciado](#enunciado)
+  - [Menú ampliado (propuesta menu con opciones extras)](#menú-ampliado-propuesta-menu-con-opciones-extras)
+  - [Esquema de la Arquitectura del ejercicio](#esquema-de-la-arquitectura-del-ejercicio)
+  - [Tabla Alumno en la BBDD](#tabla-alumno-en-la-bbdd)
+  - [Tabla Portatil en la BBDD](#tabla-portatil-en-la-bbdd)
+  - [Webgrafía](#webgrafía)
+    - [Three Tier (Three Layer) Architecture in Spring MVC Web Application](#three-tier-three-layer-architecture-in-spring-mvc-web-application)
+    - [How to configure persistence.xml file - Beginner’s Guide to JPA’s persistence.xml](#how-to-configure-persistencexml-file---beginners-guide-to-jpas-persistencexml)
+    - [How to generate a UUID](#how-to-generate-a-uuid)
+    - [Calendar Class in Java with examples](#calendar-class-in-java-with-examples)
+    - [PersistenceUnit vs PersistenceContext (Stackoverflow discussion)](#persistenceunit-vs-persistencecontext-stackoverflow-discussion)
+    - [Entity Manager \& Persistence Context (and type = PersistenceContextType)](#entity-manager--persistence-context-and-type--persistencecontexttype)
+    - [Difference Between @JoinColumn and mappedBy](#difference-between-joincolumn-and-mappedby)
+  - [Solución de Errores](#solución-de-errores)
+    - [Versión de Hibernate](#versión-de-hibernate)
+    - [Hibernate’s “Detached Entity Passed to Persist” Error](#hibernates-detached-entity-passed-to-persist-error)
+    - [How to remove a detached instance (Stackoverflow discussion)](#how-to-remove-a-detached-instance-stackoverflow-discussion)
+    - [@OneToMany/@ManyToOne(fetch = FetchType.EAGER) - Hibernate could not initialize proxy – no Session](#onetomanymanytoonefetch--fetchtypeeager---hibernate-could-not-initialize-proxy--no-session)
+    - [Update/Delete query --\> TransactionRequiredException Error](#updatedelete-query----transactionrequiredexception-error)
+  - [Funcionalidades extras no implementadas](#funcionalidades-extras-no-implementadas)
+  - [Excepciones no controladas](#excepciones-no-controladas)
+  - [Prueba de Ejecución](#prueba-de-ejecución)
+
 ## Enunciado
 
 Cuando un alumno se matricula en un instituto se le asigna un portátil para trabajar. Mientras el alumno esté matriculado, usará siempre el mismo portátil. 

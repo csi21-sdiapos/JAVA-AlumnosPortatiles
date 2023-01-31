@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 import com.AlumnosPortatiles.DAL.entities.Portatil;
 
 
-@Component("AlumnoDTO")
+@Component(value = "AlumnoDTO")
 public class AlumnoDTO {
 
 	

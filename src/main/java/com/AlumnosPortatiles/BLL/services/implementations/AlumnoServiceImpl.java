@@ -16,7 +16,7 @@ import com.AlumnosPortatiles.DAL.entities.Portatil;
 import com.AlumnosPortatiles.UIL.tools.Tools;
 
 
-@Service("AlumnoServiceImpl")
+@Service(value = "AlumnoServiceImpl")
 public class AlumnoServiceImpl implements IAlumnoService {
 
 	

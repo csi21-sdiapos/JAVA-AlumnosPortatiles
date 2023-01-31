@@ -18,12 +18,12 @@ import com.AlumnosPortatiles.DAL.entities.Alumno;
 import com.AlumnosPortatiles.DAL.repositories.interfaces.IAlumnoRepository;
 
 
-@Repository("AlumnoRepositoryImpl")
+@Repository(value = "AlumnoRepositoryImpl")
 public class AlumnoRepositoryImpl implements IAlumnoRepository {
 
 	
 	/** The entity manager factory. */
-	@PersistenceUnit(name = "AlumnosPortatiles")
+	@PersistenceUnit(name = "AlumnosPortatiles", unitName = "AlumnosPortatiles")
     private EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("AlumnosPortatiles");
 
 	

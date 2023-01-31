@@ -12,7 +12,7 @@ import com.AlumnosPortatiles.DAL.entities.Portatil;
 import com.AlumnosPortatiles.UIL.tools.Tools;
 
 
-@Service("PortatilServiceImpl")
+@Service(value = "PortatilServiceImpl")
 public class PortatilServiceImpl implements IPortatilService {
 
 	

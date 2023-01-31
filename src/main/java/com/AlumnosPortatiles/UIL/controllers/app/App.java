@@ -14,7 +14,7 @@ import com.AlumnosPortatiles.BLL.services.interfaces.IPortatilService;
 import com.AlumnosPortatiles.UIL.tools.Tools;
 
 
-@Controller("App")
+@Controller(value = "App")
 public class App {
 	
 	// Create an EntityManagerFactory when you start the application

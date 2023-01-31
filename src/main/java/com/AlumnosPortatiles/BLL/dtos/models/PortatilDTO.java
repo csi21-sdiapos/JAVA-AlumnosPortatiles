@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 import com.AlumnosPortatiles.DAL.entities.Alumno;
 
-@Component("PortatilDTO")
+@Component(value = "PortatilDTO")
 public class PortatilDTO {
 
 	

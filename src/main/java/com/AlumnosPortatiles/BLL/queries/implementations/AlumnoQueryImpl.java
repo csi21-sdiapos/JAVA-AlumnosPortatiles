@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.AlumnosPortatiles.BLL.queries.interfaces.IAlumnoQuery;
@@ -11,8 +13,15 @@ import com.AlumnosPortatiles.DAL.entities.Alumno;
 import com.AlumnosPortatiles.DAL.repositories.implementations.AlumnoRepositoryImpl;
 import com.AlumnosPortatiles.DAL.repositories.interfaces.IAlumnoRepository;
 
+/* 
+ * Transactions with Spring and JPA --> https://www.baeldung.com/transaction-configuration-with-jpa-and-spring
+ * 
+ * Transaction Propagation and Isolation in Spring @Transactional -->https://www.baeldung.com/spring-transactional-propagation-isolation
+ * 
+ * Spring transaction management. Isolation and propagation --> https://habr.com/en/post/513644/
+ */
 
-@Service("AlumnoQueryImpl")
+@Service(value = "AlumnoQueryImpl")
 public class AlumnoQueryImpl implements IAlumnoQuery {
 
 	
@@ -28,7 +37,7 @@ public class AlumnoQueryImpl implements IAlumnoQuery {
 	 * @return the list
 	 * @throws Exception the exception
 	 */
-	@Transactional
+	@Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED, readOnly = true, timeout = 10)
 	@Override
 	public List<Alumno> listarAlumnos() throws Exception {
 		try {
@@ -48,7 +57,7 @@ public class AlumnoQueryImpl implements IAlumnoQuery {
 	 * @return the alumno
 	 * @throws Exception the exception
 	 */
-	@Transactional
+	@Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED, readOnly = true, timeout = 10)
 	@Override
 	public Alumno buscarAlumnoPorId(long alumno_id) throws Exception {
 		try {
@@ -68,7 +77,7 @@ public class AlumnoQueryImpl implements IAlumnoQuery {
 	 * @return true, if successful
 	 * @throws Exception the exception
 	 */
-	@Transactional
+	@Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED, rollbackFor = { Exception.class }, timeout = 10)
 	@Override
 	public boolean insertarAlumno(Alumno alumno) throws Exception {
 		try {
@@ -93,7 +102,7 @@ public class AlumnoQueryImpl implements IAlumnoQuery {
 	 * @return true, if successful
 	 * @throws Exception the exception
 	 */
-	@Transactional
+	@Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED, rollbackFor = { Exception.class }, timeout = 10)
 	@Override
 	public boolean editarAlumno(long alumno_id, String alumno_nombre, String alumno_apellidos, String alumno_telefono) throws Exception {
 		try {
@@ -114,6 +123,7 @@ public class AlumnoQueryImpl implements IAlumnoQuery {
 	 * @return true, if successful
 	 * @throws Exception the exception
 	 */
+	@Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED, rollbackFor = { Exception.class }, timeout = 10)
 	@Override
 	public boolean eliminarAlumnoPorId(long alumno_id) throws Exception {
 		try {
@@ -134,7 +144,7 @@ public class AlumnoQueryImpl implements IAlumnoQuery {
 	 * @return true, if successful
 	 * @throws Exception the exception
 	 */
-	@Transactional
+	@Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED, rollbackFor = { Exception.class }, timeout = 10)
 	@Override
 	public boolean eliminarAlumno(Alumno alumno) throws Exception {
 		try {

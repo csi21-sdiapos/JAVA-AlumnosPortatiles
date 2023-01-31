@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.AlumnosPortatiles.BLL.queries.interfaces.IPortatilQuery;
@@ -11,8 +13,15 @@ import com.AlumnosPortatiles.DAL.entities.Portatil;
 import com.AlumnosPortatiles.DAL.repositories.implementations.PortatilRepositoryImpl;
 import com.AlumnosPortatiles.DAL.repositories.interfaces.IPortatilRepository;
 
+/* 
+ * Transactions with Spring and JPA --> https://www.baeldung.com/transaction-configuration-with-jpa-and-spring
+ * 
+ * Transaction Propagation and Isolation in Spring @Transactional -->https://www.baeldung.com/spring-transactional-propagation-isolation
+ * 
+ * Spring transaction management. Isolation and propagation --> https://habr.com/en/post/513644/
+ */
 
-@Service("PortatilQueryImpl")
+@Service(value = "PortatilQueryImpl")
 public class PortatilQueryImpl implements IPortatilQuery {
 
 	
@@ -28,7 +37,7 @@ public class PortatilQueryImpl implements IPortatilQuery {
 	 * @return the list
 	 * @throws Exception the exception
 	 */
-	@Transactional
+	@Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED, readOnly = true, timeout = 10)
 	@Override
 	public List<Portatil> listarPortatiles() throws Exception {
 		try {
@@ -48,7 +57,7 @@ public class PortatilQueryImpl implements IPortatilQuery {
 	 * @return the portatil
 	 * @throws Exception the exception
 	 */
-	@Transactional
+	@Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED, readOnly = true, timeout = 10)
 	@Override
 	public Portatil buscarPortatilPorId(long portatil_id) throws Exception {
 		try {
@@ -68,7 +77,7 @@ public class PortatilQueryImpl implements IPortatilQuery {
 	 * @return true, if successful
 	 * @throws Exception the exception
 	 */
-	@Transactional
+	@Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED, rollbackFor = { Exception.class }, timeout = 10)
 	@Override
 	public boolean insertarPortatil(Portatil portatil) throws Exception {
 		try {
@@ -91,7 +100,7 @@ public class PortatilQueryImpl implements IPortatilQuery {
 	 * @return true, if successful
 	 * @throws Exception the exception
 	 */
-	@Transactional
+	@Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED, rollbackFor = { Exception.class }, timeout = 10)
 	@Override
 	public boolean editarPortatil(long portatil_id, String portatil_marca, String portatil_modelo) throws Exception {
 		try {
@@ -112,7 +121,7 @@ public class PortatilQueryImpl implements IPortatilQuery {
 	 * @return true, if successful
 	 * @throws Exception the exception
 	 */
-	@Transactional
+	@Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED, rollbackFor = { Exception.class }, timeout = 10)
 	@Override
 	public boolean eliminarPortatilPorId(long portatil_id) throws Exception {
 		try {
@@ -133,7 +142,7 @@ public class PortatilQueryImpl implements IPortatilQuery {
 	 * @return true, if successful
 	 * @throws Exception the exception
 	 */
-	@Transactional
+	@Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED, rollbackFor = { Exception.class }, timeout = 10)
 	@Override
 	public boolean eliminarPortatil(Portatil portatil) throws Exception {
 		try {

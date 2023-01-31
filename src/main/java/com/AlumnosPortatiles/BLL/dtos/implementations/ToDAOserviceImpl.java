@@ -9,7 +9,7 @@ import com.AlumnosPortatiles.DAL.entities.Alumno;
 import com.AlumnosPortatiles.DAL.entities.Portatil;
 
 
-@Service("ToDAOserviceImpl")
+@Service(value = "ToDAOserviceImpl")
 public class ToDAOserviceImpl implements IToDAO {
 
 	

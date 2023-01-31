@@ -19,35 +19,46 @@ import javax.persistence.TemporalType;
 
 import com.AlumnosPortatiles.UIL.tools.Tools;
 
+/*
+ * One-to-One Relationship in JPA --> https://www.baeldung.com/jpa-one-to-one
+ * 
+ * @JoinColumn Annotation Explained --> https://www.baeldung.com/jpa-join-column
+ * 
+ * What is referencedColumnName used for in JPA? --> https://stackoverflow.com/questions/11244569/what-is-referencedcolumnname-used-for-in-jpa
+ * 
+ * Hibernate @PrimaryKeyJoinColumn Annotation --> https://www.javaguides.net/2019/12/hibernate-primarykeyjoincolumn.html
+ *  
+ * targetEntity example --> http://www.java2s.com/Code/Java/JPA/OneToManyTargetEntity.htm
+ */
 
-@Entity
-@Table(name = "dwh_ap_portatil", schema = "dwh_alumnos_portatiles")
+@Entity(name = "Portatil")
+@Table( name = "dwh_ap_portatil", schema = "dwh_alumnos_portatiles")
 public class Portatil implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	
 	/******************************************* ATRIBUTOS *********************************************/
-	@Column(name = "portatil_uuid", unique = false, nullable = false)		// defino el alumno_uuid como unique=false por el supuesto teórico de que en un futuro se pudieran crear ciertas clases, que implementen métodos, que insertasen al final de la jornada laboral todos los objetos guardados en persistencia durante el día, y así reducir las llamadas a la bbdd, y de esta forma todos esos objetos llevarían el mismo uuid en la inserción
+	@Column(table = "dwh_ap_portatil", name = "portatil_uuid", insertable = true, updatable = true, unique = false, nullable = false)		// defino el portatil_uuid como unique=false por el supuesto teórico de que en un futuro se pudieran crear ciertas clases, que implementen métodos, que insertasen al final de la jornada laboral todos los objetos guardados en persistencia durante el día, y así reducir las llamadas a la bbdd, y de esta forma todos esos objetos llevarían el mismo uuid en la inserción
 	private UUID portatil_uuid;
 	
 	@Id
-	@Column(name = "portatil_id", unique = true, nullable = false)
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(table = "dwh_ap_portatil", name = "portatil_id", insertable = false, updatable = false, unique = true, nullable = false)		// defino el alumno_id como insertable y updatable false ya que este campo se autogenera en el momento de la creación del objeto y no debería de insertarse ni actualizarse mediante sentencias sql
+	@GeneratedValue(strategy = GenerationType.IDENTITY, generator = "dwh_ap_portatil_portatil_id_seq")
 	private long portatil_id;
 	
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "portatil_date", unique = false, nullable = false)		// defino el alumno_date como unique=false por el supuesto teórico de que en un futuro se pudieran crear ciertas clases, que implementen métodos, que insertasen al final de la jornada laboral todos los objetos guardados en persistencia durante el día, y así reducir las llamadas a la bbdd, y de esta forma todos esos objetos llevarían la misma fecha de inserción
+	@Temporal(value = TemporalType.TIMESTAMP)
+	@Column(table = "dwh_ap_portatil", name = "portatil_date", insertable = true, updatable = true, unique = false, nullable = false)		// defino el portatil_date como unique=false por el supuesto teórico de que en un futuro se pudieran crear ciertas clases, que implementen métodos, que insertasen al final de la jornada laboral todos los objetos guardados en persistencia durante el día, y así reducir las llamadas a la bbdd, y de esta forma todos esos objetos llevarían la misma fecha de inserción
 	private Calendar portatil_date;
 	
-	@Column(name = "portatil_marca", unique = false, nullable = false)
+	@Column(table = "dwh_ap_portatil", name = "portatil_marca", insertable = true, updatable = true, unique = false, nullable = false)
 	private String portatil_marca;
 	
-	@Column(name = "portatil_modelo", unique = false, nullable = false)
+	@Column(table = "dwh_ap_portatil", name = "portatil_modelo", insertable = true, updatable = true, unique = false, nullable = false)
 	private String portatil_modelo;
 	
 	/******************************************* RELACIONES *********************************************/
-	@OneToOne(mappedBy = "portatil", optional = true, cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+	@OneToOne(mappedBy = "portatil", targetEntity = Alumno.class, cascade = CascadeType.MERGE, fetch = FetchType.EAGER, orphanRemoval = false, optional = true)
 	private Alumno alumno;
 	
 	

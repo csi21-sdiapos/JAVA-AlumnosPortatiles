@@ -18,12 +18,12 @@ import com.AlumnosPortatiles.DAL.entities.Portatil;
 import com.AlumnosPortatiles.DAL.repositories.interfaces.IPortatilRepository;
 
 
-@Repository("PortatilRepositoryImpl")
+@Repository(value = "PortatilRepositoryImpl")
 public class PortatilRepositoryImpl implements IPortatilRepository {
 
 	
 	/** The entity manager factory. */
-	@PersistenceUnit(name = "AlumnosPortatiles")
+	@PersistenceUnit(name = "AlumnosPortatiles", unitName = "AlumnosPortatiles")
     private EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("AlumnosPortatiles");
 
 	

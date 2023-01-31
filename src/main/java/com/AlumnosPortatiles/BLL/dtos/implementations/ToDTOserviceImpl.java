@@ -8,7 +8,7 @@ import com.AlumnosPortatiles.BLL.dtos.models.PortatilDTO;
 import com.AlumnosPortatiles.DAL.entities.Portatil;
 
 
-@Service("ToDTOserviceImpl")
+@Service(value = "ToDTOserviceImpl")
 public class ToDTOserviceImpl implements IToDTO {
 
 	
